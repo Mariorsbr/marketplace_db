@@ -14,6 +14,33 @@ function generateToken(params = {}){
 
 }
 
+router.delete('/del/:id', async(req, res) =>{
+    
+    try {
+        const store_remove = await Store.deleteOne({_id: req.params.id})
+
+        return res.send({ 
+            store_remove,
+        });
+    } catch(err){
+        return res.status('400').send({error: 'failed to delete'})
+    }
+})
+
+router.patch('/update/:id', async(req,res) =>{
+    try {
+        const store_updated = await Store.updateOne({_id: req.params.id}, {$set: {name: req.body.name}})
+
+        return res.send({ 
+            store_updated,
+        });
+    } catch(err){
+        return res.status('400').send({error: 'failed to update'})
+    }
+
+})
+
+
 router.get('/', async(req,res) =>{
     Store.find({}, function(err, stores) {
         var storeMap = {};

@@ -14,6 +14,32 @@ function generateToken(params = {}){
 
 }
 
+router.delete('/del/:id', async(req, res) =>{
+    
+    try {
+        const user_remove = await User.deleteOne({_id: req.params.id})
+
+        return res.send({ 
+            user_remove,
+        });
+    } catch(err){
+        return res.status('400').send({error: 'failed to delete'})
+    }
+})
+
+router.patch('/update/:id', async(req,res) =>{
+    try {
+        const user_updated = await User.updateOne({_id: req.params.id}, {$set: {name: req.body.name}})
+
+        return res.send({ 
+            user_updated,
+        });
+    } catch(err){
+        return res.status('400').send({error: 'failed to update'})
+    }
+
+})
+
 router.get('/', async(req,res) =>{
     User.find({}, function(err, users) {
         var userMap = {};
