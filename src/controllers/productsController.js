@@ -6,53 +6,53 @@ const router = express.Router();
 
 router.use(storeMiddleware);
 
-router.post('/register', async (req,res)=>{
+router.post('/register', async (req, res) => {
     try {
-        
+
         const product = await Product.create(req.body);
-    
+
         return res.send({ product });
-    } catch(err){
-        return res.status('400').send({error: 'failed'})
+    } catch (err) {
+        return res.status('400').send({ error: 'failed' })
     }
 });
 
-router.delete('/del/:id', async(req, res) =>{
-    
-    try {
-        const store_remove = await Product.deleteOne({_id: req.params.id})
+router.delete('/del/:id', async (req, res) => {
 
-        return res.send({ 
+    try {
+        const store_remove = await Product.deleteOne({ _id: req.params.id })
+
+        return res.send({
             store_remove,
         });
-    } catch(err){
-        return res.status('400').send({error: 'failed to delete'})
+    } catch (err) {
+        return res.status('400').send({ error: 'failed to delete' })
     }
 })
 
-router.patch('/update/:id', async(req,res) =>{
+router.patch('/update/:id', async (req, res) => {
     try {
-        const store_updated = await Product.updateOne({_id: req.params.id}, {$set: {name: req.body.name}})
+        const store_updated = await Product.updateOne({ _id: req.params.id }, { $set: { name: req.body.name } })
 
-        return res.send({ 
+        return res.send({
             store_updated,
         });
-    } catch(err){
-        return res.status('400').send({error: 'failed to update'})
+    } catch (err) {
+        return res.status('400').send({ error: 'failed to update' })
     }
 
 })
 
-router.get('/', async(req,res) =>{
-    Product.find({}, function(err, products) {
+router.get('/', async (req, res) => {
+    Product.find({}, function (err, products) {
         var productsMap = {};
-    
-        products.forEach(function(products) {
-          productsMap[store._id] = product;
+
+        products.forEach(function (products) {
+            productsMap[store._id] = product;
         });
-    
-        res.send(productMap);  
-      });
+
+        res.send(productsMap);
+    });
 });
 
 module.exports = app => app.use('/products', router);
