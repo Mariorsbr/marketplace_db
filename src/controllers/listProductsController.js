@@ -5,10 +5,10 @@ const router = express.Router();
 
 router.get('/', async (req, res) => {
     Product.find({}, function (err, products) {
-        var productsMap = {};
+        var productsMap = [];
 
         products.forEach(function (product) {
-            productsMap[store._id] = product;
+            productsMap.push(product);
         });
 
         res.send(productsMap);
