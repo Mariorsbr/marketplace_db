@@ -29,7 +29,7 @@ router.delete('/del/:id', async (req, res) => {
 
 router.patch('/update/:id', async (req, res) => {
     try {
-        const store_updated = await Store.updateOne({ _id: req.params.id }, { $set: { name: req.body.name } })
+        const store_updated = await Store.updateOne({ _id: req.params.id }, { $set: { logo: req.body.logo } })
 
         return res.send({
             store_updated,

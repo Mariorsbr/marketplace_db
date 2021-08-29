@@ -15,4 +15,10 @@ router.get('/', async (req, res) => {
     });
 });
 
+router.get('/:id', async (req, res) => {
+    const product = await Product.findOne({ _id: req.params.id })
+
+    return res.send(product);
+});
+
 module.exports = app => app.use('/listproducts', router);

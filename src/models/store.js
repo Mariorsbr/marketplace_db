@@ -32,8 +32,6 @@ const StoreSchema = new mongoose.Schema({
         type: Date,
         default: Date.now,
     },
-
-
 });
 
 StoreSchema.pre('save', async function(next){
