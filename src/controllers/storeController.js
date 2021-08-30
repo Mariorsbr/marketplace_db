@@ -53,6 +53,11 @@ router.get('/', async (req, res) => {
     });
 });
 
+router.get('/:name', async (req, res) => {
+    const store = await Store.findOne({ name: req.params.name });
+    res.send(store);
+});
+
 router.post('/register', async (req, res) => {
     try {
         const { email } = req.body;

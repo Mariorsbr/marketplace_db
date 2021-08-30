@@ -15,6 +15,20 @@ router.get('/', async (req, res) => {
     });
 });
 
+router.get('/store/:store', async (req, res) => {
+    Product.find({}, function (err, products) {
+        var productsMap = [];
+
+        products.forEach(function (product) {
+            if (product.store == req.params.store) {
+                productsMap.push(product);
+            }
+        });
+
+        res.send(productsMap);
+    });
+});
+
 router.get('/:id', async (req, res) => {
     const product = await Product.findOne({ _id: req.params.id })
 
