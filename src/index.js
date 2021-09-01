@@ -12,7 +12,7 @@ require('./controllers/productsController')(app);
 require('./controllers/listProductsController')(app);
 require('./controllers/userController')(app);
 require('./controllers/authStoreController')(app);
-
+require('./controllers/requestController')(app);
 
 app.listen(3333, () => console.info(`App listening on port: 3333`));
 

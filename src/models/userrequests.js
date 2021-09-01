@@ -19,6 +19,6 @@ const UserRequestSchema = new mongoose.Schema({
 });
 
 
-const UserRquest = mongoose.model('UserRquest', UserRequestSchema);
+const UserRquest = mongoose.model('Userrequest', UserRequestSchema);
 
 module.exports = UserRquest;

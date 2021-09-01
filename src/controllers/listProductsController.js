@@ -4,7 +4,7 @@ const Product = require('../models/Product');
 const router = express.Router();
 
 router.get('/', async (req, res) => {
-    Product.find({}, function (err, products) {
+    Product.find({ }, function (err, products) {
         var productsMap = [];
 
         products.forEach(function (product) {
