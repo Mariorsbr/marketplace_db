@@ -35,4 +35,27 @@ router.get('/:id', async (req, res) => {
     return res.send(product);
 });
 
+router.post('/register/product', async (req, res) => {
+    try {
+        const product = await Product.create(req.body);
+
+        return res.send({ product });
+    } catch (err) {
+        return res.status('400').send({ error: 'failed' })
+    }
+});
+
+router.delete('/del/:id', async (req, res) => {
+
+    try {
+        const store_remove = await Product.deleteOne({ _id: req.params.id })
+
+        return res.send({
+            store_remove,
+        });
+    } catch (err) {
+        return res.status('400').send({ error: 'failed to delete' })
+    }
+})
+
 module.exports = app => app.use('/listproducts', router);
